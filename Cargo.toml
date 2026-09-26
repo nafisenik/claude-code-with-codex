@@ -1,5 +1,5 @@
 [package]
-name = "claude-codex"
+name = "duolane"
 version = "0.3.1"
 description = "Run Claude Code on your Claude and ChatGPT subscriptions at once, routed per model name"
 edition = "2024"

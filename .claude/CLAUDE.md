@@ -53,8 +53,8 @@ changes made on top of it.
 
 ## Naming and distribution
 
-The crate, the installed command, and the library target are all `claude-codex`
-(`claude_codex` for the library, derived automatically from the package name).
+The crate, the installed command, and the library target are all `duolane`.
+The project was renamed from upstream's `claude-codex`.
 The GitHub repository is `nafisenik/duolane`.
 
 Some strings deliberately keep the old `claude-code-proxy` name because they are

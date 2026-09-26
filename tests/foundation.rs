@@ -1,12 +1,12 @@
-use claude_codex::anthropic::{
+use duolane::anthropic::{
     encode_sse_event, parse_sse_events, parse_sse_events_with_stats, schema::MessagesRequest,
 };
-use claude_codex::auth::{AuthStorage, InMemoryAuthStore};
-use claude_codex::config::{AliasProvider, load_config_for_env};
-use claude_codex::logging::{create_logger, redact_value};
-use claude_codex::paths::{self, DirResolverEnv};
-use claude_codex::retry::{RETRY_INITIAL_DELAY_MS, RETRY_MAX_DELAY_MS, compute_backoff_delay};
-use claude_codex::traffic::{
+use duolane::auth::{AuthStorage, InMemoryAuthStore};
+use duolane::config::{AliasProvider, load_config_for_env};
+use duolane::logging::{create_logger, redact_value};
+use duolane::paths::{self, DirResolverEnv};
+use duolane::retry::{RETRY_INITIAL_DELAY_MS, RETRY_MAX_DELAY_MS, compute_backoff_delay};
+use duolane::traffic::{
     MAX_SSE_CAPTURE_BYTES, TrafficCaptureOptions, create_traffic_capture, redact_traffic,
     sanitize_path_part, traffic_capture_enabled_for_env,
 };

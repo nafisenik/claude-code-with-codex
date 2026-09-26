@@ -4,11 +4,11 @@ use std::path::Path;
 use std::sync::{Arc, Mutex, OnceLock};
 use std::time::Duration;
 
-use claude_codex::providers::codex::websocket::{
+use duolane::providers::codex::websocket::{
     WEBSOCKET_PROTOCOL_HEADER, invalidate_codex_websocket_pool_owner,
 };
-use claude_codex::request_identity::ConversationIdentity;
-use claude_codex::server;
+use duolane::request_identity::ConversationIdentity;
+use duolane::server;
 use futures_util::{SinkExt, StreamExt};
 use http::{HeaderMap, StatusCode};
 use serde_json::{Value, json};

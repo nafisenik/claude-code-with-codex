@@ -4,17 +4,17 @@ use std::pin::Pin;
 use std::sync::Arc;
 use std::task::{Context, Poll};
 
-use claude_codex::provider::RequestContext;
-use claude_codex::providers::codex::client::{
+use duolane::provider::RequestContext;
+use duolane::providers::codex::client::{
     ActualTransport, CodexError, CodexHttpClient, CodexResponse,
 };
-use claude_codex::providers::codex::continuation::{
+use duolane::providers::codex::continuation::{
     ContinuationCandidate, abort_continuation, clear_continuation, continuation_candidate,
     has_continuation_for_tests, if_current_turn, is_current_turn, record_continuation,
     with_current_turn,
 };
-use claude_codex::providers::codex::translate::request::ResponsesRequest;
-use claude_codex::providers::codex::websocket::{
+use duolane::providers::codex::translate::request::ResponsesRequest;
+use duolane::providers::codex::websocket::{
     CodexWebSocketEventReceiver, invalidate_codex_websocket_pool_key,
     invalidate_codex_websocket_pool_turn,
 };

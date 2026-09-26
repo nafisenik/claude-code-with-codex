@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 env:
-  BIN_NAME: claude-codex
+  BIN_NAME: duolane
 
 jobs:
   checks:
@@ -69,7 +69,7 @@ jobs:
         env:
           VERSION: ${{ github.ref_name }}
         run: |
-          expected="claude-codex ${VERSION#v}"
+          expected="duolane ${VERSION#v}"
           actual="$(target/${{ matrix.target }}/release/${BIN_NAME} --version)"
           test "$actual" = "$expected"
       - name: Verify Windows binary
@@ -78,7 +78,7 @@ jobs:
         env:
           VERSION: ${{ github.ref_name }}
         run: |
-          $expected = "claude-codex $($env:VERSION.TrimStart('v'))"
+          $expected = "duolane $($env:VERSION.TrimStart('v'))"
           $actual = & "target/${{ matrix.target }}/release/${env:BIN_NAME}.exe" --version
           if ($actual -ne $expected) {
             Write-Error "expected '$expected', got '$actual'"
@@ -117,8 +117,8 @@ jobs:
           name: windows-amd64
       - shell: pwsh
         run: |
-          Expand-Archive claude-codex-windows-amd64.zip -DestinationPath .
-          .\claude-codex.exe --version
+          Expand-Archive duolane-windows-amd64.zip -DestinationPath .
+          .\duolane.exe --version
 
   release:
     needs: [build, smoke-windows]

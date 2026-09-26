@@ -31,7 +31,7 @@ your ChatGPT plan, in the same session, and flip between them whenever you want.
 
 ## Quickstart
 
-**1. Install `claude-codex`** from this repository:
+**1. Install `duolane`** from this repository:
 
 ```sh
 cargo install --git https://github.com/nafisenik/duolane --locked
@@ -40,7 +40,7 @@ cargo install --git https://github.com/nafisenik/duolane --locked
 **2. Check your Codex CLI login:**
 
 ```sh
-claude-codex codex auth status
+duolane codex auth status
 ```
 
 Run `codex login` first if no valid account is found.
@@ -58,7 +58,7 @@ Run `codex login` first if no valid account is found.
 **4. Start the router** and leave it running:
 
 ```sh
-claude-codex serve
+duolane serve
 ```
 
 **5. Restart Claude Code.**
@@ -79,7 +79,7 @@ the suffix before sending the model name to Codex.
 - **Inside Claude Code.** Run `/model gpt-5.6-sol[1m]` or `/model gpt-6-sol[1m]` for Codex or
   `/model claude-opus-5` for Claude.
 - **For one new session.** Set `ANTHROPIC_MODEL` when launching Claude Code.
-- **List what is available.** `claude-codex models`.
+- **List what is available.** `duolane models`.
 
 Reasoning is carried across a switch. When you move a conversation from one plan
 to the other, the earlier turn's thinking is kept and shown to the next model as
@@ -117,7 +117,7 @@ Do not set `ANTHROPIC_AUTH_TOKEN` or `ANTHROPIC_API_KEY`. Either one overrides
 the Claude subscription login and the Claude route returns 401.
 
 The proxy listens on `127.0.0.1:18765` by default. Change it with
-`PORT=11435 claude-codex serve`, and match `ANTHROPIC_BASE_URL`.
+`PORT=11435 duolane serve`, and match `ANTHROPIC_BASE_URL`.
 
 Alias remapping is optional. For example,
 `ANTHROPIC_DEFAULT_SONNET_MODEL=gpt-5.6-terra` makes `/model sonnet` use Codex.
@@ -125,8 +125,8 @@ Alias remapping is optional. For example,
 ## Other backends
 
 The same proxy can also route to **Kimi**, **Grok**, and **Cursor** models, each
-with its own login. Run `claude-codex models` to see every id, and
-`claude-codex <backend> auth status` to check a login. These backends keep
+with its own login. Run `duolane models` to see every id, and
+`duolane <backend> auth status` to check a login. These backends keep
 the behavior of the upstream project this is based on.
 
 ## Limitations

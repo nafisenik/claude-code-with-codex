@@ -429,7 +429,7 @@ fn render_header(
         .unwrap_or_else(|_| Duration::from_secs(0));
     let text = Line::from(vec![
         Span::styled(
-            " claude-codex",
+            " duolane",
             Style::default()
                 .fg(BG)
                 .bg(TEAL)
@@ -1655,7 +1655,7 @@ fn render_setup_overlay(frame: &mut ratatui::Frame<'_>, area: Rect, setup_text: 
 
 fn mock_setup_text(port: u16, registry: &Registry) -> String {
     format!(
-        "Mock mode uses deterministic simulated monitor traffic.\nNo proxy server is listening.\nRun `claude-codex serve` to start the proxy.\n\n{}",
+        "Mock mode uses deterministic simulated monitor traffic.\nNo proxy server is listening.\nRun `duolane serve` to start the proxy.\n\n{}",
         setup_text(port, registry)
     )
 }
@@ -2333,7 +2333,7 @@ mod tests {
         let text = buffer_text(&buffer);
 
         assert!(text.contains("mock://tui-demo"), "{text}");
-        assert!(text.contains("claude-codex"), "{text}");
+        assert!(text.contains("duolane"), "{text}");
         assert!(text.contains("streaming"), "{text}");
         assert!(text.contains("gpt-5.6-terra"), "{text}");
         assert!(text.contains("upstream connection closed"), "{text}");

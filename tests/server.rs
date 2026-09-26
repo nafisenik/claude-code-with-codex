@@ -2,7 +2,7 @@ use async_trait::async_trait;
 use axum::body::Body;
 use axum::http::{Method, Request, StatusCode};
 use axum::response::IntoResponse;
-use claude_codex::{
+use duolane::{
     MessagesRequest,
     config::AliasProvider,
     monitor::{MonitorHandle, RequestStatus},
@@ -139,9 +139,9 @@ impl Provider for TranslatingProvider {
     ) -> Result<Generation, ProviderError> {
         let translated = match self.name {
             "kimi" => serde_json::to_value(
-                claude_codex::providers::kimi::translate::request::translate_request(
+                duolane::providers::kimi::translate::request::translate_request(
                     &body,
-                    claude_codex::providers::kimi::translate::request::TranslateOptions {
+                    duolane::providers::kimi::translate::request::TranslateOptions {
                         session_id: None,
                     },
                 )
@@ -149,7 +149,7 @@ impl Provider for TranslatingProvider {
             )
             .unwrap(),
             "grok" => serde_json::to_value(
-                claude_codex::providers::grok::translate::request::translate_request(
+                duolane::providers::grok::translate::request::translate_request(
                     &body,
                     self.model.to_string(),
                 )
@@ -1166,7 +1166,7 @@ async fn non_codex_validation_uses_openai_errors_before_generation() {
     .unwrap();
     assert_eq!(value["error"]["param"], "temperature");
     assert_eq!(value["error"]["code"], "unsupported_parameter");
-    assert!(claude_codex::session::existing_session_now(Some("invalid-routed-request")).is_none());
+    assert!(duolane::session::existing_session_now(Some("invalid-routed-request")).is_none());
     let snapshot = monitor.snapshot();
     assert_eq!(snapshot.recent[0].session_seq, None);
     assert_eq!(snapshot.recent[0].provider, None);

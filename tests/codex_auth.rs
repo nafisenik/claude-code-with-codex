@@ -13,7 +13,7 @@ const ID_TOKEN_ACCT: &str =
 fn codex_cmd() -> (Command, TempDir, std::path::PathBuf) {
     let temp = TempDir::new().unwrap();
     let auth_path = temp.path().join(".codex").join("auth.json");
-    let mut cmd = Command::cargo_bin("claude-codex").unwrap();
+    let mut cmd = Command::cargo_bin("duolane").unwrap();
     cmd.args(["codex", "auth", "status"]);
     cmd.env("CCP_CONFIG_DIR", temp.path());
     cmd.env("CCP_CODEX_AUTH_FILE", &auth_path);

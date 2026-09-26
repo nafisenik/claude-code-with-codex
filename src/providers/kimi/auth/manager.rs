@@ -47,7 +47,7 @@ impl<S: AuthStorage<StoredAuth>> KimiAuthManager<S> {
                         auth
                     }
                     None => {
-                        anyhow::bail!("Not authenticated. Run: claude-codex kimi auth login");
+                        anyhow::bail!("Not authenticated. Run: duolane kimi auth login");
                     }
                 }
             }
