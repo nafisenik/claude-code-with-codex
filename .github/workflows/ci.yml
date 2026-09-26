@@ -22,13 +22,14 @@ jobs:
         with:
           components: clippy, rustfmt
       - uses: Swatinem/rust-cache@v2
-      - uses: taiki-e/install-action@v2
-        with:
-          tool: just
-      - name: Install checkle
-        run: cargo install checkle --locked
-      - name: Run full checks
-        run: just check-ci
+      - name: Format
+        run: cargo fmt --all -- --check
+      - name: Clippy
+        run: cargo clippy --locked --all-targets -- -D warnings
+      - name: Build
+        run: cargo build --locked --all
+      - name: Test
+        run: cargo test --locked --all -- --test-threads=1
 
   install:
     name: Install from repository
