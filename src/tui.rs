@@ -127,6 +127,9 @@ fn run_monitor_loop(
     Ok(exit)
 }
 
+// Ctrl-C must not fall through to the later key arms when `handle_ctrl_c`
+// returns false, so its `if` stays inside the arm instead of becoming a guard.
+#[allow(clippy::collapsible_match)]
 fn run_monitor_events(
     terminal: &mut Terminal<CrosstermBackend<Stdout>>,
     mut snapshot: impl FnMut() -> MonitorState,
