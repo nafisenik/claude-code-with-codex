@@ -1,3 +1,8 @@
+## Unreleased
+
+- Codex requests can use `gpt-6-sol` (and `gpt-6-sol-fast`) alongside
+  `gpt-5.6-sol`.
+
 ## v0.1.32 (2026-08-03)
 
 - Kimi subagents and multimodal messages with mixed text and images work instead

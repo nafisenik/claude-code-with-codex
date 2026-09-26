@@ -1784,6 +1784,7 @@ mod tests {
         for (resolved, expected) in [
             ("gpt-5.6-luna", "gpt-5.6-sol"),
             ("gpt-5.6-sol", "gpt-5.6-sol"),
+            ("gpt-6-sol", "gpt-6-sol"),
             ("gpt-5.6-terra", "gpt-5.6-terra"),
             ("gpt-5.4", "gpt-5.4"),
         ] {
@@ -1802,6 +1803,7 @@ mod tests {
         for (resolved, lite_expected) in [
             ("gpt-5.6-luna", true),
             ("gpt-5.6-sol", true),
+            ("gpt-6-sol", true),
             ("gpt-5.4", false),
         ] {
             let mut model = resolved.to_string();
@@ -1977,6 +1979,8 @@ mod tests {
         let models = provider.supported_models();
         assert!(models.contains(&"gpt-5.6-sol".to_string()));
         assert!(models.contains(&"gpt-5.6-sol-fast".to_string()));
+        assert!(models.contains(&"gpt-6-sol".to_string()));
+        assert!(models.contains(&"gpt-6-sol-fast".to_string()));
         assert!(models.contains(&"gpt-5.6-terra".to_string()));
         assert!(models.contains(&"gpt-5.6-luna".to_string()));
         assert!(models.contains(&"gpt-5.4".to_string()));

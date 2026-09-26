@@ -13,6 +13,7 @@ pub const ALLOWED_MODELS: &[&str] = &[
     "gpt-5.5",
     "gpt-5.6-luna",
     "gpt-5.6-sol",
+    "gpt-6-sol",
     "gpt-5.6-terra",
 ];
 
@@ -117,7 +118,7 @@ pub fn assert_allowed_model(model: &str) -> Result<(), ModelNotAllowedError> {
 }
 
 pub fn uses_responses_lite(model: &str) -> bool {
-    matches!(model, "gpt-5.6-luna" | "gpt-5.6-sol" | "gpt-5.6-terra")
+    matches!(model, "gpt-5.6-luna" | "gpt-5.6-sol" | "gpt-6-sol" | "gpt-5.6-terra")
 }
 
 /// `gpt-5.6-luna` exists only behind the Responses Lite lane; the full
@@ -157,6 +158,7 @@ mod tests {
     fn web_search_upgrades_luna_to_full_lane_sibling() {
         assert_eq!(full_lane_web_search_model("gpt-5.6-luna"), "gpt-5.6-sol");
         assert_eq!(full_lane_web_search_model("gpt-5.6-sol"), "gpt-5.6-sol");
+        assert_eq!(full_lane_web_search_model("gpt-6-sol"), "gpt-6-sol");
         assert_eq!(full_lane_web_search_model("gpt-5.6-terra"), "gpt-5.6-terra");
         assert_eq!(full_lane_web_search_model("gpt-5.4"), "gpt-5.4");
     }
@@ -200,12 +202,16 @@ mod tests {
         let r = resolve_model_request("gpt-5.6-sol-fast");
         assert_eq!(r.model, "gpt-5.6-sol");
         assert_eq!(r.service_tier, Some(ServiceTier::Priority));
+        let r = resolve_model_request("gpt-6-sol-fast");
+        assert_eq!(r.model, "gpt-6-sol");
+        assert_eq!(r.service_tier, Some(ServiceTier::Priority));
     }
 
     #[test]
     fn allowed_models_accept_base() {
         assert!(assert_allowed_model("gpt-5.4").is_ok());
         assert!(assert_allowed_model("gpt-5.6-sol").is_ok());
+        assert!(assert_allowed_model("gpt-6-sol").is_ok());
         assert!(assert_allowed_model("gpt-5.6-terra").is_ok());
         assert!(assert_allowed_model("gpt-5.6-luna").is_ok());
     }

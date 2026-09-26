@@ -76,6 +76,7 @@ Claude Code now discovers the models exposed by the router. Switch directly:
 
 ```text
 /model gpt-5.6-sol[1m]
+/model gpt-6-sol[1m]
 /model claude-opus-5
 ```
 
@@ -84,7 +85,7 @@ the suffix before sending the model name to Codex.
 
 ## Switching models
 
-- **Inside Claude Code.** Run `/model gpt-5.6-sol[1m]` for Codex or
+- **Inside Claude Code.** Run `/model gpt-5.6-sol[1m]` or `/model gpt-6-sol[1m]` for Codex or
   `/model claude-opus-5` for Claude.
 - **For one new session.** Set `ANTHROPIC_MODEL` when launching Claude Code.
 - **List what is available.** `claude-codex models`.
