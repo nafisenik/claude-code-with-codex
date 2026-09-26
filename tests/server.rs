@@ -1357,6 +1357,8 @@ async fn models_endpoint_lists_supported_models() {
     let ids: Vec<&str> = data.iter().map(|m| m["id"].as_str().unwrap()).collect();
     assert!(ids.contains(&"gpt-5.6-sol"));
     assert!(ids.contains(&"gpt-6-sol"));
+    assert!(ids.contains(&"gpt-6-terra"));
+    assert!(ids.contains(&"gpt-6-luna"));
     for entry in data {
         assert_eq!(entry["type"], "model");
         assert!(entry["display_name"].as_str().is_some());

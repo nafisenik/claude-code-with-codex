@@ -1,7 +1,8 @@
 ## Unreleased
 
-- Codex requests can use `gpt-6-sol` (and `gpt-6-sol-fast`) alongside
-  `gpt-5.6-sol`.
+- Codex requests can use `gpt-6-sol`, `gpt-6-terra`, and `gpt-6-luna` (plus
+  their `-fast` variants) alongside the `gpt-5.6-*` models. Web search requests
+  on `gpt-6-luna` run on `gpt-6-sol`, as `gpt-5.6-luna` does on `gpt-5.6-sol`.
 
 ## v0.1.32 (2026-08-03)
 

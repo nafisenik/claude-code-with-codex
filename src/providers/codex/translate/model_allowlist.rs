@@ -15,6 +15,8 @@ pub const ALLOWED_MODELS: &[&str] = &[
     "gpt-5.6-sol",
     "gpt-6-sol",
     "gpt-5.6-terra",
+    "gpt-6-luna",
+    "gpt-6-terra",
 ];
 
 pub const MODEL_ALIASES: &[(&str, &str)] = &[
@@ -118,18 +120,27 @@ pub fn assert_allowed_model(model: &str) -> Result<(), ModelNotAllowedError> {
 }
 
 pub fn uses_responses_lite(model: &str) -> bool {
-    matches!(model, "gpt-5.6-luna" | "gpt-5.6-sol" | "gpt-6-sol" | "gpt-5.6-terra")
+    matches!(
+        model,
+        "gpt-5.6-luna"
+            | "gpt-5.6-sol"
+            | "gpt-5.6-terra"
+            | "gpt-6-luna"
+            | "gpt-6-sol"
+            | "gpt-6-terra"
+    )
 }
 
 /// `gpt-5.6-luna` exists only behind the Responses Lite lane; the full
 /// Responses API resolves it to a `-free` variant and returns 404 (Model not
 /// found gpt-5.6-luna-free-...). Hosted web_search requests must run on the
-/// full lane, so luna is upgraded to its nearest full-lane sibling.
+/// full lane, so luna is upgraded to its nearest full-lane sibling. The same
+/// applies to `gpt-6-luna`, which is upgraded to `gpt-6-sol`.
 pub fn full_lane_web_search_model(model: &str) -> &str {
-    if model == "gpt-5.6-luna" {
-        "gpt-5.6-sol"
-    } else {
-        model
+    match model {
+        "gpt-5.6-luna" => "gpt-5.6-sol",
+        "gpt-6-luna" => "gpt-6-sol",
+        _ => model,
     }
 }
 
@@ -159,6 +170,8 @@ mod tests {
         assert_eq!(full_lane_web_search_model("gpt-5.6-luna"), "gpt-5.6-sol");
         assert_eq!(full_lane_web_search_model("gpt-5.6-sol"), "gpt-5.6-sol");
         assert_eq!(full_lane_web_search_model("gpt-6-sol"), "gpt-6-sol");
+        assert_eq!(full_lane_web_search_model("gpt-6-luna"), "gpt-6-sol");
+        assert_eq!(full_lane_web_search_model("gpt-6-terra"), "gpt-6-terra");
         assert_eq!(full_lane_web_search_model("gpt-5.6-terra"), "gpt-5.6-terra");
         assert_eq!(full_lane_web_search_model("gpt-5.4"), "gpt-5.4");
     }
@@ -212,6 +225,8 @@ mod tests {
         assert!(assert_allowed_model("gpt-5.4").is_ok());
         assert!(assert_allowed_model("gpt-5.6-sol").is_ok());
         assert!(assert_allowed_model("gpt-6-sol").is_ok());
+        assert!(assert_allowed_model("gpt-6-terra").is_ok());
+        assert!(assert_allowed_model("gpt-6-luna").is_ok());
         assert!(assert_allowed_model("gpt-5.6-terra").is_ok());
         assert!(assert_allowed_model("gpt-5.6-luna").is_ok());
     }

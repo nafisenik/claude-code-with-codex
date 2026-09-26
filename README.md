@@ -14,7 +14,7 @@ the model name:
 
 - Ask for a **Claude** model and it uses your **Claude subscription** (the login
   Claude Code already has). Nothing is translated and no API key is needed.
-- Ask for a **`gpt-5.6-*`** model and it uses your **ChatGPT subscription**
+- Ask for a **`gpt-5.6-*`** or **`gpt-6-*`** model and it uses your **ChatGPT subscription**
   through the Codex login.
 
 So you can keep Opus on your Claude plan for hard work and run the fast slot on
