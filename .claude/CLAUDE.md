@@ -55,8 +55,7 @@ changes made on top of it.
 
 The crate, the installed command, and the library target are all `claude-codex`
 (`claude_codex` for the library, derived automatically from the package name).
-The crates.io package is `claude-codex`. The GitHub repository stays
-`claude-code-with-codex`.
+The GitHub repository is `nafisenik/duolane`.
 
 Some strings deliberately keep the old `claude-code-proxy` name because they are
 compatibility contracts, not the user-facing name. Do not rename them in a
@@ -69,10 +68,10 @@ future cleanup:
 - The Codex `ORIGINATOR` and `User-Agent` in `providers/codex`. These go to the
   ChatGPT backend, so keep them stable to avoid changing what the server sees.
 
-Two install paths ship. crates.io via `cargo install claude-codex`, and prebuilt
-binaries from the `v*`-tag release workflow in `.github/workflows/release.yml`.
-That workflow uses the default `GITHUB_TOKEN` and needs no secrets or Homebrew
-tap.
+One install path ships: building from this repository with
+`cargo install --git https://github.com/nafisenik/duolane --locked`. Do not add
+instructions that install from crates.io or from the upstream repository's
+releases; those install the upstream version without this fork's changes.
 
 ## Build and test
 

@@ -1,7 +1,6 @@
-# claude-code-with-codex
+# duolane
 
-[![crates.io](https://img.shields.io/crates/v/claude-codex.svg)](https://crates.io/crates/claude-codex)
-[![CI](https://github.com/fcakyon/claude-code-with-codex/actions/workflows/ci.yml/badge.svg)](https://github.com/fcakyon/claude-code-with-codex/actions/workflows/ci.yml)
+[![CI](https://github.com/nafisenik/duolane/actions/workflows/ci.yml/badge.svg)](https://github.com/nafisenik/duolane/actions/workflows/ci.yml)
 
 Use Claude Code with your **Claude subscription and your ChatGPT (Codex)
 subscription at the same time**, and switch between them mid-conversation.
@@ -28,22 +27,14 @@ your ChatGPT plan, in the same session, and flip between them whenever you want.
 
 - **Claude Code** installed and signed in with a **Claude Pro or Max** plan.
 - A **ChatGPT Plus, Pro, or Team** plan and the **Codex CLI** signed in.
-- **Rust** only if you install from crates.io or source. The prebuilt binary needs nothing.
+- **Rust** ([rustup.rs](https://rustup.rs)), to build and install from this repository.
 
 ## Quickstart
 
-**1. Install `claude-codex`** using a prebuilt binary:
-
-Prebuilt binary, no Rust needed (macOS and Linux):
+**1. Install `claude-codex`** from this repository:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/fcakyon/claude-code-with-codex/main/scripts/install.sh | bash
-```
-
-Or install from crates.io if you have Rust:
-
-```sh
-cargo install claude-codex --locked
+cargo install --git https://github.com/nafisenik/duolane --locked
 ```
 
 **2. Check your Codex CLI login:**
