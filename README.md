@@ -13,7 +13,7 @@ the model name:
 
 - Ask for a **Claude** model and it uses your **Claude subscription** (the login
   Claude Code already has). Nothing is translated and no API key is needed.
-- Ask for a **`gpt-5.6-*`** or **`gpt-6-*`** model and it uses your **ChatGPT subscription**
+- Ask for a **GPT-5.6 or GPT-6 family** model and it uses your **ChatGPT subscription**
   through the Codex login.
 
 So you can keep Opus on your Claude plan for hard work and run the fast slot on
@@ -67,7 +67,8 @@ Claude Code now discovers the models exposed by the router. Switch directly:
 
 ```text
 /model gpt-5.6-sol[1m]
-/model gpt-6-sol[1m]
+/model gpt-6-astra[1m]
+/model gpt-6.1-sol[1m]
 /model claude-opus-5
 ```
 
@@ -76,7 +77,7 @@ the suffix before sending the model name to Codex.
 
 ## Switching models
 
-- **Inside Claude Code.** Run `/model gpt-5.6-sol[1m]` or `/model gpt-6-sol[1m]` for Codex or
+- **Inside Claude Code.** Run `/model gpt-6-astra[1m]` or `/model gpt-6.1-sol[1m]` for Codex or
   `/model claude-opus-5` for Claude.
 - **For one new session.** Set `ANTHROPIC_MODEL` when launching Claude Code.
 - **List what is available.** `duolane models`.

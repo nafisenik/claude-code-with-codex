@@ -13,10 +13,12 @@ pub const ALLOWED_MODELS: &[&str] = &[
     "gpt-5.5",
     "gpt-5.6-luna",
     "gpt-5.6-sol",
-    "gpt-6-sol",
     "gpt-5.6-terra",
+    "gpt-6-astra",
     "gpt-6-luna",
+    "gpt-6-sol",
     "gpt-6-terra",
+    "gpt-6.1-sol",
 ];
 
 pub const MODEL_ALIASES: &[(&str, &str)] = &[
@@ -125,9 +127,11 @@ pub fn uses_responses_lite(model: &str) -> bool {
         "gpt-5.6-luna"
             | "gpt-5.6-sol"
             | "gpt-5.6-terra"
+            | "gpt-6-astra"
             | "gpt-6-luna"
             | "gpt-6-sol"
             | "gpt-6-terra"
+            | "gpt-6.1-sol"
     )
 }
 
@@ -218,6 +222,11 @@ mod tests {
         let r = resolve_model_request("gpt-6-sol-fast");
         assert_eq!(r.model, "gpt-6-sol");
         assert_eq!(r.service_tier, Some(ServiceTier::Priority));
+        for model in ["gpt-6-astra", "gpt-6.1-sol"] {
+            let r = resolve_model_request(&format!("{model}-fast"));
+            assert_eq!(r.model, model);
+            assert_eq!(r.service_tier, Some(ServiceTier::Priority));
+        }
     }
 
     #[test]
@@ -225,6 +234,10 @@ mod tests {
         assert!(assert_allowed_model("gpt-5.4").is_ok());
         assert!(assert_allowed_model("gpt-5.6-sol").is_ok());
         assert!(assert_allowed_model("gpt-6-sol").is_ok());
+        assert!(assert_allowed_model("gpt-6-astra").is_ok());
+        assert!(assert_allowed_model("gpt-6.1-sol").is_ok());
+        assert!(uses_responses_lite("gpt-6-astra"));
+        assert!(uses_responses_lite("gpt-6.1-sol"));
         assert!(assert_allowed_model("gpt-6-terra").is_ok());
         assert!(assert_allowed_model("gpt-6-luna").is_ok());
         assert!(assert_allowed_model("gpt-5.6-terra").is_ok());
