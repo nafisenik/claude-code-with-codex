@@ -37,20 +37,8 @@ const CURSOR_LEGACY_MODELS: &[&str] = &[
     "composer-2.5-fast",
 ];
 
-pub(crate) const CODEX_MODELS: &[&str] = &[
-    "gpt-5.2",
-    "gpt-5.3-codex",
-    "gpt-5.3-codex-spark",
-    "gpt-5.4",
-    "gpt-5.4-mini",
-    "gpt-5.5",
-    "gpt-5.6-luna",
-    "gpt-5.6-sol",
-    "gpt-6-sol",
-    "gpt-5.6-terra",
-    "gpt-6-luna",
-    "gpt-6-terra",
-];
+pub(crate) const CODEX_MODELS: &[&str] =
+    crate::providers::codex::translate::model_allowlist::ALLOWED_MODELS;
 
 pub(crate) const KIMI_MODELS: &[&str] = &["kimi-for-coding", "kimi-k2.6", "kimi-k3", "k2.6", "k3"];
 pub(crate) const GROK_MODELS: &[&str] = &["grok-composer-2.5-fast", "grok-4.5"];
@@ -412,8 +400,10 @@ mod tests {
     #[test]
     fn explicit_codex_model_routes_to_codex_while_default_is_anthropic() {
         let registry = Registry::new(AliasProvider::Anthropic);
-        let p = registry.provider_for_model("gpt-5.6-terra", None);
-        assert_eq!(p.expect("provider").name(), "codex");
+        for model in ["gpt-5.6-terra", "gpt-6-astra[1m]", "gpt-6.1-sol-fast"] {
+            let p = registry.provider_for_model(model, None);
+            assert_eq!(p.expect("provider").name(), "codex", "{model}");
+        }
     }
 
     #[test]

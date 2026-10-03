@@ -1744,6 +1744,27 @@ mod tests {
     }
 
     #[test]
+    fn astra_request_keeps_high_effort() {
+        let req: MessagesRequest = serde_json::from_value(json!({
+            "model": "gpt-6-astra",
+            "messages": [{"role":"user", "content":"hello"}],
+            "output_config": {"effort": "high"}
+        }))
+        .unwrap();
+        let out = translate_request(
+            &req,
+            TranslateOptions {
+                model: "gpt-6-astra".to_string(),
+                use_responses_lite: true,
+                ..opts()
+            },
+        )
+        .unwrap();
+        assert_eq!(out.model, "gpt-6-astra");
+        assert!(matches!(out.reasoning.unwrap().effort, Some(Effort::High)));
+    }
+
+    #[test]
     fn effort_ordering_matches_variant_order() {
         assert!(Effort::None < Effort::Low);
         assert!(Effort::Low < Effort::Medium);
